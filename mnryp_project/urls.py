@@ -20,9 +20,6 @@ import categories.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-
-urlpatterns = [
     path('about/', static_pages.views.about, name="about"),
     path('', static_pages.views.home, name="home"),
     path('contact', static_pages.views.contact, name="contact"),
