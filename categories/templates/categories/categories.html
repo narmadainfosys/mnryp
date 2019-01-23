@@ -1,1 +1,9 @@
 <h1>This is categories page</h1>
+
+{% for category in categories.all %}
+
+<h2>{{category.name}}</h2>
+<h3>{{category.summary}}</h3>
+
+{% endfor %}
+
