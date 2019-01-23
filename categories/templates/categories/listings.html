@@ -1,1 +1,11 @@
 <h1>This is listing page</h1>
+
+{% for listing in listings.all %}
+
+<h2>{{ listing.title }}</h2>
+<h3>{{ listing.short_description }}</h3>
+<h4>{{ listing.full_description }}</h4>
+<h4>{{ listing.category }}</h4>
+
+{% endfor %}
+
