@@ -1,9 +1,10 @@
-<h1>This is categories page</h1>
+<h1>This is categories page or homepage maybe</h1>
 
 {% for category in categories.all %}
 
-<h2>{{category.name}}</h2>
+<a href="#">{{ category.name }}</a>
 <h3>{{category.summary}}</h3>
 
 {% endfor %}
 
+<a href="listings">listings</a>
