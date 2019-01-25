@@ -3,10 +3,21 @@ from django.shortcuts import render
 # Create your views here.
 
 def about(request):
-    return render(request, 'static_pages/about.html')
+    template = 'static_pages/about.html'
+
+    return render(request, template)
+
 def home(request):
-    return render(request, 'static_pages/home.html')
+    template = 'static_pages/home.html'
+
+    return render(request, template)
+
 def contact(request):
-    return render(request, 'static_pages/contact.html')
+    template = 'static_pages/contact.html'
+
+    return render(request, template)
+
 def privacy_policy(request):
-    return render(request, 'static_pages/privacy_policy.html')
+    template = 'static_pages/privacy_policy.html'
+
+    return render(request, template)
