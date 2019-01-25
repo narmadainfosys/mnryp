@@ -1,0 +1,9 @@
+<h1>This is the listing detail page</h1>
+
+{% for listing in listing.all %}
+
+<h2>{{ listing.title }}</h2>
+<h3>{{ listing.short_description }}</h3>
+<h4>{{ listing.full_description }}</h4>
+
+{% endfor %}

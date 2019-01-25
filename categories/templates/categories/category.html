@@ -2,7 +2,8 @@
 
 {% for listing in listings.all %}
 
-<p>{{ listing }}</p>
+<p><a href="http://127.0.0.1:8000/listings/{{ listing.slug }}/">{{ listing.title }}</a></p>
+<p>{{ listing.slug }}</p>
 
 {% endfor %}
 

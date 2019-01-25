@@ -33,3 +33,15 @@ def category(request, slug):
         'listings':listings,
     }
     return render(request, template, context)
+
+def listing(request, slug):
+    template = 'categories/listing.html'
+    print(slug)
+
+    listing = Listing.objects.filter(slug = slug)
+    print(listing)
+
+    context = {
+        'listing':listing,
+    }
+    return render(request, template, context)

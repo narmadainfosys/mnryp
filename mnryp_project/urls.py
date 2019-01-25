@@ -16,15 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import static_pages.views
-import categories.views, categories.urls
+import categories.views, categories.urls, categories.listing_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', static_pages.views.about, name="about"),
     path('', static_pages.views.home, name="home"),
-    path('contact', static_pages.views.contact, name="contact"),
-    path('privacy_policy', static_pages.views.privacy_policy, name="privacy_policy"),
+    path('contact/', static_pages.views.contact, name="contact"),
+    path('privacy_policy/', static_pages.views.privacy_policy, name="privacy_policy"),
     path('categories/', include(categories.urls)),
-    path('listings', categories.views.listings, name="listings"),
-    #path('category/(?P<slug>[-\w]+)/', categories.views.category, name="category"),
+    path('listings/', include(categories.listing_urls)),
 ]
