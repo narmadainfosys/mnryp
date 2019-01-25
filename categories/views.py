@@ -8,7 +8,7 @@ def categories(request):
     categories = Category.objects
 
     context = {
-        'category':category,
+        'categories':categories,
     }
     return render(request, template, context)
 
