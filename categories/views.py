@@ -12,10 +12,10 @@ def category(request, slug):
     template = 'categories/category.html'
 
     category = get_object_or_404(Category, slug=slug)
-    post = Listing.objects.filter(category = category)
+    listings = Listing.objects.filter(category = category)
 
     context = {
         'category':category,
-        'post':post,
+        'listings':listings,
     }
     return render(request, template, context)

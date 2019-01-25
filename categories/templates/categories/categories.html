@@ -2,9 +2,9 @@
 
 {% for category in categories.all %}
 
-<a href="{{ category.slug }}/">{{ category.name }}</a>
-<h3>{{category.summary}}</h3>
+<h3>CATEGORY: <a href="{{ category.slug }}/">{{ category.name }}</a> </h3>
+<p>CATEGORY SUMMARY: {{category.summary}}</p>
 
 {% endfor %}
 
-<a href="listings">listings</a>
+<a href="listings/">listings</a>
