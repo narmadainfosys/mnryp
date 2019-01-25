@@ -21,7 +21,7 @@ import categories.views, categories.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', static_pages.views.about, name="about"),
-    path('', categories.views.categories, name="home"),
+    path('', static_pages.views.home, name="home"),
     path('contact', static_pages.views.contact, name="contact"),
     path('privacy_policy', static_pages.views.privacy_policy, name="privacy_policy"),
     path('categories/', include(categories.urls)),
