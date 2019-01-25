@@ -2,7 +2,7 @@
 
 {% for category in categories.all %}
 
-<a href="#">{{ category.name }}</a>
+<a href="{{ category.slug }}/">{{ category.name }}</a>
 <h3>{{category.summary}}</h3>
 
 {% endfor %}
