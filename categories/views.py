@@ -50,9 +50,16 @@ def listing(request, slug):
 def create_listing(request):
     template = 'categories/create_listing.html'
 
-    form = ListingForm()
+    if request.method == "POST":
+        listing_form = ListingForm(request.POST)
+        if listing_form.is_valid():
+            listing_form.save()
+            return listings(request)
+
+    else:
+        listing_form = ListingForm()
 
     context = {
-        'form':form
+        'form':listing_form,
     }
     return render(request, template, context)
