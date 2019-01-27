@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Listing
+from .forms import ListingForm
 # Create your views here.
 
 def categories(request):
@@ -43,5 +44,15 @@ def listing(request, slug):
 
     context = {
         'listing':listing,
+    }
+    return render(request, template, context)
+
+def create_listing(request):
+    template = 'categories/create_listing.html'
+
+    form = ListingForm()
+
+    context = {
+        'form':form
     }
     return render(request, template, context)
