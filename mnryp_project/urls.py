@@ -26,4 +26,5 @@ urlpatterns = [
     path('privacy_policy/', static_pages.views.privacy_policy, name="privacy_policy"),
     path('categories/', include(categories.urls)),
     path('listings/', include(categories.listing_urls)),
+    path('accounts/', include('allauth.urls')),
 ]
