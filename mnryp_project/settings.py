@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'static_pages.apps.StaticPagesConfig',
     'categories.apps.CategoriesConfig',
     'django.contrib.sites',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -138,5 +137,5 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-SITE_ID = 1
+SITE_ID = 2
 LOGIN_REDIRECT_URL = 'home'
