@@ -1,0 +1,40 @@
+<html>
+  <head>
+
+    <title>MNY-YP</title>
+  </head>
+  <body>
+
+    <div class="header">
+      <p>HEADER</p>
+      {% load socialaccount %}
+      {% if user.is_authenticated %}
+
+      <p>Welcome {{ user.username }}</p>
+      <a href="{% url 'account_logout' %}">logout</a>
+
+      {% else %}
+      <a href="{% provider_login_url 'github' %}">login/signup</a>
+      {% endif %}
+      <p><a href="{% url 'create_listing' %}">create listing</a></p>
+    </div>
+
+    <div class="body">
+      <br />
+      <p>=========content starts here</p>
+      {% block content %}
+
+      {% endblock %}
+      <p>=========content ends here</p>
+      <br />
+    </div>
+
+    <div>
+      <p>FOOTER</p>
+      <p><a href="about/">about</a></p>
+      <p><a href="contact/">contact</a></p>
+      <p><a href="privacy_policy/">privacy_policy</a></p>
+    </div>
+
+  </body>
+</html>
