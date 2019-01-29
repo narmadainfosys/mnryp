@@ -1,14 +1,17 @@
 <form method="get">
   <input type="text" name="q" id="q" placeholder="search" />
 </form>
-{{ listings.all }}
-{% for listing in listings %}
-{{ listing }}
+This is the object to be looped over: {{ listings }}
+{% if listings.all != Null %}
+{% for listing in listings.all %}
+<p>{{ listing.all }}</p>
 {{ listing.title }}
 {{ listing.slug }}
 {{ listing.short_description }}
 
-<br />
-
 {% endfor %}
+{% else %}
+but
+nothing it is returning null
+{% endif %}
 

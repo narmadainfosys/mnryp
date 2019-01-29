@@ -10,11 +10,6 @@ class ListingDocument(DocType):
 
     fields = [
         'title',
-        'slug',
-        'id',
         'short_description',
-        'full_description',
-        'business_address',
-        'contact_person',
     ]
 

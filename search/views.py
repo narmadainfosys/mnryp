@@ -18,4 +18,7 @@ def search(request):
         'listings': listings
     }
 
+    print(type(listings))
+    print(listings)
+
     return render(request, template, context)
