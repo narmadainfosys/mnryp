@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 import static_pages.views
 import categories.views, categories.urls, categories.listing_urls
+import search.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('categories/', include(categories.urls)),
     path('listings/', include(categories.listing_urls)),
     path('accounts/', include('allauth.urls')),
+    path('search/', search.views.search, name="search"),
 ]
