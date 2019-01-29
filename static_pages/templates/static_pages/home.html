@@ -1,20 +1,8 @@
-<h1>All auth sutff</h1>
-{% load socialaccount %}
-{% if user.is_authenticated %}
+{% extends 'base.html' %}
 
-<p>Welcome {{ user.username }}</p>
-<a href="{% url 'account_logout' %}">logout</a>
-
-{% else %}
-<a href="{% provider_login_url 'github' %}">login/signup</a>
-{% endif %}
-
-
+{% block content %}
 <h1>This is home page</h1>
 <p><a href="categories/">categoriesl</a></p>
 <p><a href="listings/">listings</a></p>
-<p><a href="{% url 'create_listing' %}">create listing</a></p>
-<p><a href="about/">about</a></p>
-<p><a href="contact/">contact</a></p>
-<p><a href="privacy_policy/">privacy_policy</a></p>
 
+{% endblock %}
