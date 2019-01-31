@@ -14,7 +14,10 @@
       <a href="{% url 'account_logout' %}">logout</a>
 
       {% else %}
-      <a href="{% provider_login_url 'github' %}">login/signup</a>
+      <a href="{% provider_login_url 'github' %}">login/signup with github</a>
+      <br />
+      <h4>OR</h4>
+      <a href="{% provider_login_url 'twitter' %}">login/signup with twitter</a>
       {% endif %}
       <p><a href="{% url 'create_listing' %}">create listing</a></p>
     </div>
