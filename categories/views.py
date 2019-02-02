@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from .models import Category, Listing
 from .forms import ListingForm
 # Create your views here.
@@ -61,5 +62,17 @@ def create_listing(request):
 
     context = {
         'form':listing_form,
+    }
+    return render(request, template, context)
+
+def search(request):
+    template = 'categories/listings.html'
+
+    query = request.GET.get('q')
+
+    results = Listing.objects.filter(Q(title__icontains=query) | Q(full_description__icontains=query) | Q(short_description__icontains=query))
+
+    context = {
+        'items': results,
     }
     return render(request, template, context)
