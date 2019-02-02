@@ -1,3 +1,23 @@
+<form action="{% url 'search' %}" method="GET">
+  <input name="q" value="{{request.GET.q}}" placeholder="search" />
+  <button type="submit">submit</button>
+</form>
+
+{% if items %}
+{% for item in items.all %}
+<p>{{item}}</p>
+{{item.short_description}}
+<br />
+{{item.full_description}}
+<br />
+{{item.category}}
+
+{%endfor%}
+{%endif%}
+
+
+
+
 <h1>This is listing page</h1>
 
 {% for listing in listings.all %}
