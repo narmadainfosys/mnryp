@@ -38,10 +38,8 @@ def category(request, slug):
 
 def listing(request, slug):
     template = 'categories/listing.html'
-    print(slug)
 
     listing = Listing.objects.filter(slug = slug)
-    print(listing)
 
     context = {
         'listing':listing,
@@ -64,6 +62,27 @@ def create_listing(request):
         'form':listing_form,
     }
     return render(request, template, context)
+
+def edit_listing(request, slug):
+    template = 'categories/edit_listing.html'
+    listing = get_object_or_404(Listing, slug=slug)
+
+    if request.method == "POST":
+        edit_form = ListingForm(request.POST, instance=listing)
+        if edit_form.is_valid():
+            edit_form.save()
+            return listings(request)
+
+    else:
+        edit_form = ListingForm(instance=listing)
+
+    context = {
+        'form':edit_form,
+
+    }
+    return render(request, template, context)
+
+
 
 def search(request):
     template = 'categories/listings.html'
