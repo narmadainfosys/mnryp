@@ -1,11 +1,13 @@
+{# search form #}
 <form action="{% url 'search' %}" method="GET">
   <input name="q" value="{{request.GET.q}}" placeholder="search" />
   <button type="submit">submit</button>
 </form>
 
+{# If search initiated #}
 {% if items %}
 {% for item in items.all %}
-<p>{{item}}</p>
+<p>{{item}} || <a href="{% url 'edit_listing' slug=item.slug %}">edit</a></p>
 {{item.short_description}}
 <br />
 {{item.full_description}}
@@ -17,15 +19,16 @@
 
 
 
-
 <h1>This is listing page</h1>
 
 {% for listing in listings.all %}
+{% with listing.slug as slug %}
 
-<h2><a href="{{ listing.slug }}/"> {{ listing.title }}</a></h2>
+<h2><a href="{{ slug }}/"> {{ listing.title }}</a> OR <a href="{% url 'edit_listing' slug=slug %}">edit</a></h2>
 <h3>{{ listing.short_description }}</h3>
 <h4>{{ listing.full_description }}</h4>
 <h4>{{ listing.category }}</h4>
+{% endwith %}
 
 {% endfor %}
 
