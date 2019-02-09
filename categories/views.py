@@ -65,6 +65,7 @@ def create_listing(request):
 
 def edit_listing(request, slug):
     template = 'categories/edit_listing.html'
+
     listing = get_object_or_404(Listing, slug=slug)
 
     if request.method == "POST":
@@ -72,7 +73,6 @@ def edit_listing(request, slug):
         if edit_form.is_valid():
             edit_form.save()
             return listings(request)
-
     else:
         edit_form = ListingForm(instance=listing)
 
@@ -81,6 +81,22 @@ def edit_listing(request, slug):
 
     }
     return render(request, template, context)
+
+def delete_listing(request, slug):
+    template = 'categories/delete_listing.html'
+
+    listing = get_object_or_404(Listing, slug=slug)
+
+    if request.method == "POST":
+        listing.delete()
+        return listings(request)
+
+    context = {
+        'listing':listing,
+    }
+    return render(request, template, context)
+
+
 
 
 
