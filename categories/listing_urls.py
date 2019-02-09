@@ -7,4 +7,5 @@ urlpatterns = [
     path('create/', views.create_listing, name="create_listing"),
     path('<slug:slug>/', views.listing, name="listing"),
     path('<slug:slug>/edit', views.edit_listing, name="edit_listing"),
+    path('<slug:slug>/delete', views.delete_listing, name="delete_listing"),
 ]

@@ -1,0 +1,11 @@
+{% load socialaccount %}
+{% if user.is_authenticated %}
+<h1>delete listing</h1>
+<h3>Are you sure you want to delete {{ listing.title }}</h3>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">delete</button>
+</form>
+{% else %}
+<h2>Are you sure you are the author of {{ listing.title }} listing</h2>
+{% endif %}
