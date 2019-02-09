@@ -1,9 +1,11 @@
 <h1>This is the listing detail page</h1>
 
 {% for listing in listing.all %}
+{% with listing.slug as slug %}
 
-<h2>{{ listing.title }} || <a href="{% url 'edit_listing' slug=listing.slug %}">edit</a></h2>
+<h2>{{ listing.title }} || <a href="{% url 'edit_listing' slug=slug %}">edit</a> || <a href="{% url 'delete_listing' slug=slug %}">delete</a></h2>
 <h3>{{ listing.short_description }}</h3>
 <h4>{{ listing.full_description }}</h4>
 
+{% endwith %}
 {% endfor %}
