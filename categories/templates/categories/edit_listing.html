@@ -1,0 +1,14 @@
+{% load socialaccount %}
+{% if user.is_authenticated %}
+<h1>edit listing</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">update</button>
+</form>
+
+{% else %}
+<h2>Are you sure you are the author of this listing</h2>
+<a href="{% provider_login_url 'github' %}">login/signup</a>
+{% endif %}
+
