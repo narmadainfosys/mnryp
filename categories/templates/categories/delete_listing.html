@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% load socialaccount %}
 {% if user.is_authenticated %}
 <h1>delete listing</h1>
@@ -9,3 +13,5 @@
 {% else %}
 <h2>Are you sure you are the author of {{ listing.title }} listing</h2>
 {% endif %}
+
+{% endblock %}

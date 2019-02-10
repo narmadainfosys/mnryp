@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1>This is the listing detail page</h1>
 
 {% for listing in listing.all %}
@@ -9,3 +13,5 @@
 
 {% endwith %}
 {% endfor %}
+
+{% endblock %}

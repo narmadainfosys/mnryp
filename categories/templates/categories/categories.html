@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1>This is categories page or homepage maybe</h1>
 
 {% for category in categories.all %}
@@ -8,3 +12,5 @@
 {% endfor %}
 
 <a href="{% url 'listings' %}">listings</a>
+
+{% endblock %}

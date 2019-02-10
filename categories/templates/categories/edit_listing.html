@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 {% load socialaccount %}
 {% if user.is_authenticated %}
 <h1>edit listing</h1>
@@ -12,3 +15,4 @@
 <a href="{% provider_login_url 'github' %}">login/signup</a>
 {% endif %}
 
+{% endblock %}
