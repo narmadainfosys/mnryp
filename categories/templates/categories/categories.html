@@ -2,9 +2,9 @@
 
 {% for category in categories.all %}
 
-<h3>CATEGORY: <a href="{{ category.slug }}/">{{ category.name }}</a> </h3>
+<h3>CATEGORY: <a href="{% url 'category' slug=category.slug %}">{{ category.name }}</a> </h3>
 <p>CATEGORY SUMMARY: {{category.summary}}</p>
 
 {% endfor %}
 
-<a href="http:127.0.0.1:8000/listings/">listings</a>
+<a href="{% url 'listings' %}">listings</a>
