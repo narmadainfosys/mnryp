@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from .models import Category, Listing
 from .forms import ListingForm
@@ -53,7 +53,7 @@ def create_listing(request):
         listing_form = ListingForm(request.POST)
         if listing_form.is_valid():
             listing_form.save()
-            return listings(request)
+            return redirect('listings')
 
     else:
         listing_form = ListingForm()
@@ -72,7 +72,7 @@ def edit_listing(request, slug):
         edit_form = ListingForm(request.POST, instance=listing)
         if edit_form.is_valid():
             edit_form.save()
-            return listings(request)
+            return redirect('listings')
     else:
         edit_form = ListingForm(instance=listing)
 
@@ -89,7 +89,7 @@ def delete_listing(request, slug):
 
     if request.method == "POST":
         listing.delete()
-        return listings(request)
+        return redirect('listings')
 
     context = {
         'listing':listing,
