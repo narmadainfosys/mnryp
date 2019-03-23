@@ -11,7 +11,7 @@
 {# If search initiated #}
 {% if items %}
 {% for item in items.all %}
-{% with listing.slug as slug %}
+{% with item.slug as slug %}
 <p>{{item}} || <a href="{% url 'edit_listing' slug=slug %}">edit</a> || <a href="{% url 'delete_listing' slug=slug %}">delete</a></p>
 {{item.short_description}}
 <br />
