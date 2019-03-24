@@ -1,7 +1,12 @@
+{% load static %}
+
+<!DOCTYPE html>
+
 <html>
   <head>
 
     <title>MNY-YP</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel='stylesheet'>
   </head>
   <body>
 
@@ -41,6 +46,6 @@
       <p><a href="{% url 'contact' %}">contact</a></p>
       <p><a href="{% url 'privacy_policy' %}">privacy_policy</a></p>
     </div>
-
+    <script src='{% static 'js/bootstrap.min.js' %}'></script>
   </body>
 </html>
