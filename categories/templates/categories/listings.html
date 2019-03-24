@@ -5,7 +5,7 @@
 {# search form #}
 <form action="{% url 'search' %}" method="GET">
   <input name="q" value="{{request.GET.q}}" placeholder="search" />
-  <button type="submit">submit</button>
+  <button class='btn btn-primary' type="submit">submit</button>
 </form>
 
 {# If search initiated #}
