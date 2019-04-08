@@ -32,6 +32,19 @@ class CategoriesTest(TestCase):
         self.assertIn(self.c.name.encode(), resp.content)
 
 class ListingsTest(TestCase):
+    post_data = {
+            'category': '4',
+            'title': 'Test listing',
+            'short_description': 'Short desc',
+            'full_description': 'Full desc',
+            'contact_person': 'Test person',
+            'business_address': 'Test business address',
+            'email_address': 'test@gmail.com',
+            'phone_number': '+9779801234567',
+            'zip_code': '10400',
+            'country': 'NP'
+            }
+
     def setUp(self):
         self.c = Category.objects.create(name='Test category 1',summary='This is test category 1')
         self.l = Listing.objects.create(category=self.c,
@@ -43,7 +56,6 @@ class ListingsTest(TestCase):
                 phone_number='+9779812111122',
                 zip_code='10400',
                 country='NP',)
-
     def test_listing_creation(self):
         self.assertEqual(self.l.category, self.c)
         self.assertEqual(self.l.title, 'Test listing')
@@ -71,3 +83,38 @@ class ListingsTest(TestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.l.title.encode(), resp.content)
+
+    def test_create_listing_view(self):
+        url = reverse('create_listing')
+        resp = self.client.get(url)
+        resp_post = self.client.post(url, data=self.post_data, follow=True)
+        expected_url = reverse('listings')
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'categories/create_listing.html')
+
+        self.assertEqual(resp_post.status_code, 200)
+        self.assertRedirects(resp_post, expected_url, status_code=302,
+                            target_status_code=200)
+
+    def test_edit_listing_view(self):
+        url = reverse('edit_listing', args = [self.l.slug])
+        resp = self.client.get(url)
+        form = resp.context['form']
+        data = form.initial
+
+        data['title'] = 'edited title'
+
+        resp_post = self.client.post(url, data=data, follow=True)
+        resp = self.client.get(url)
+
+        expected_url = reverse('listings')
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'categories/edit_listing.html')
+
+        self.assertEqual(resp_post.status_code, 200)
+        self.assertRedirects(resp_post, expected_url, status_code=302,
+                            target_status_code=200)
+        self.assertEqual(resp.context['form'].initial['title'], 'edited title')
+
