@@ -136,3 +136,13 @@ class ListingsTest(TestCase):
                             target_status_code=200)
         self.assertEqual(resp.status_code ,404)
 
+    def test_search_view(self):
+        url = reverse('search')
+        data = {'q':'Test Listing'}
+        resp = self.client.get(url, data=data)
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'categories/listings.html')
+
+        self.assertTrue(self.l in resp.context['items'])
+
