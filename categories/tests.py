@@ -102,13 +102,12 @@ class ListingsTest(TestCase):
         resp = self.client.get(url)
         form = resp.context['form']
         data = form.initial
+        expected_url = reverse('listings')
 
         data['title'] = 'edited title'
 
         resp_post = self.client.post(url, data=data, follow=True)
         resp = self.client.get(url)
-
-        expected_url = reverse('listings')
 
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'categories/edit_listing.html')
@@ -117,4 +116,23 @@ class ListingsTest(TestCase):
         self.assertRedirects(resp_post, expected_url, status_code=302,
                             target_status_code=200)
         self.assertEqual(resp.context['form'].initial['title'], 'edited title')
+
+    def test_delete_listing_view(self):
+        slug = self.l.slug
+        url = reverse('delete_listing', args = [slug])
+        resp = self.client.get(url)
+        listing = resp.context['listing']
+        expected_url = reverse('listings')
+
+        resp_post = self.client.post(url, follow=True)
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'categories/delete_listing.html')
+        
+        resp = self.client.get(url, args = [slug], follow=True)
+        
+        self.assertEqual(resp_post.status_code, 200)
+        self.assertRedirects(resp_post, expected_url, status_code=302,
+                            target_status_code=200)
+        self.assertEqual(resp.status_code ,404)
 
