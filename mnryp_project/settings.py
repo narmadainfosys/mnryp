@@ -24,7 +24,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 SECRET_KEY = os.environ.get('MNRYP_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG_VALUE')
 
 ALLOWED_HOSTS = ['mnryp.herokuapp.com', '127.0.0.1']
 
