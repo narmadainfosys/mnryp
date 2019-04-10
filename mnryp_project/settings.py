@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 
 # Database stuff for heroku
 import dj_database_url
-db_from_env = dj_database.url.config()
+db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
 #allauth stuff
