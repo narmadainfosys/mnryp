@@ -1,0 +1,13 @@
+language: python
+sudo: required
+dist: xenial
+python: "3.7.1"
+services: postgresql
+before_script:
+ - psql -c "CREATE DATABASE travisci;" -U postgres
+ - export MNRYP_DB_USER="postgres"
+ - export MNRYP_DB_NAME="travisci"
+ - export MNRYP_DB_PASS=""
+ - export MNRYP_SECRET_KEY="jk48@o23@%-o#kd23#$b893%uvn3c23ud2we63_+ydvsidr25g"
+ - export DEBUG_VALUE="True"
+script: python manage.py test
