@@ -6,7 +6,7 @@
 
 {% for category in categories.all %}
 
-<h3>CATEGORY: <a href="{% url 'category' slug=category.slug %}">{{ category.name }}</a> </h3>
+<h3>CATEGORY: <a href="{% url 'categories:category' slug=category.slug %}">{{ category.name }}</a> </h3>
 <p>CATEGORY SUMMARY: {{category.summary}}</p>
 
 {% endfor %}

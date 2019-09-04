@@ -12,7 +12,7 @@
 {% if items %}
 {% for item in items.all %}
 {% with item.slug as slug %}
-<p>{{item}} || <a href="{% url 'edit_listing' slug=slug %}">edit</a> || <a href="{% url 'delete_listing' slug=slug %}">delete</a></p>
+<p>{{item}} || <a href="{% url 'listings:edit_listing' slug=slug %}">edit</a> || <a href="{% url 'listings:delete_listing' slug=slug %}">delete</a></p>
 {{item.short_description}}
 <br />
 {{item.full_description}}
@@ -29,7 +29,7 @@
 {% for listing in listings.all %}
 {% with listing.slug as slug %}
 
-<h2><a href="{% url 'listing' slug=slug %}">{{ listing.title }}</a> OR <a href="{% url 'edit_listing' slug=slug %}">edit</a> OR <a href="{% url 'delete_listing' slug=slug %}">delete</a></h2>
+<h2><a href="{% url 'listings:listing' slug=slug %}">{{ listing.title }}</a> OR <a href="{% url 'listings:edit_listing' slug=slug %}">edit</a> OR <a href="{% url 'listings:delete_listing' slug=slug %}">delete</a></h2>
 <h3>{{ listing.short_description }}</h3>
 <h4>{{ listing.full_description }}</h4>
 <h4>{{ listing.category }}</h4>
