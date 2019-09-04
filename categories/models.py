@@ -1,6 +1,5 @@
 from django.db import models
 from autoslug import AutoSlugField
-from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from datetime import datetime
 
@@ -30,7 +29,6 @@ class Listing(models.Model):
     phone_number = PhoneNumberField()
     phone_number_second = PhoneNumberField(blank=True)
     zip_code = models.PositiveIntegerField(blank=True)
-    country = CountryField(default='NP')
     slug = AutoSlugField(max_length=150, unique=True, populate_from='title')
 
     created_date_time = models.DateTimeField(auto_now_add=True)

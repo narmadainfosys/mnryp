@@ -3,7 +3,6 @@
 import autoslug.fields
 from django.db import migrations, models
 import django.db.models.deletion
-import django_countries.fields
 import phonenumber_field.modelfields
 
 
@@ -42,7 +41,6 @@ class Migration(migrations.Migration):
                 ('phone_number', phonenumber_field.modelfields.PhoneNumberField(max_length=128)),
                 ('phone_number_second', phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128)),
                 ('zip_code', models.PositiveIntegerField(blank=True)),
-                ('country', django_countries.fields.CountryField(default='NP', max_length=2)),
                 ('slug', autoslug.fields.AutoSlugField(editable=False, max_length=150, populate_from='title', unique=True)),
                 ('created_date_time', models.DateTimeField(auto_now_add=True)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='categories.Category')),
