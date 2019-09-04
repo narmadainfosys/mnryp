@@ -1,6 +1,5 @@
 from django.db import models
 from autoslug import AutoSlugField
-from phonenumber_field.modelfields import PhoneNumberField
 from datetime import datetime
 
 # Create your models here.
@@ -25,9 +24,9 @@ class Listing(models.Model):
     contact_person = models.CharField(max_length=50)
     business_address = models.CharField(max_length=50)
     email_address = models.EmailField(blank=True)
-    business_fax = PhoneNumberField(blank=True)
-    phone_number = PhoneNumberField()
-    phone_number_second = PhoneNumberField(blank=True)
+    business_fax = models.PositiveIntegerField(blank=True)
+    phone_number = models.PositiveIntegerField()
+    phone_number_second = models.PositiveIntegerField(blank=True)
     zip_code = models.PositiveIntegerField(blank=True)
     slug = AutoSlugField(max_length=150, unique=True, populate_from='title')
 
