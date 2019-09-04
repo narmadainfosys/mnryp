@@ -18,14 +18,14 @@ class CategoriesTest(TestCase):
         self.assertTrue(isinstance(self.c, Category))
 
     def test_category_list_view(self):
-        url = reverse('categories')
+        url = reverse('categories:categories')
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.c.name.encode(), resp.content)
 
     def test_category_detail_view(self):
-        url = reverse('category', args=[self.c.slug])
+        url = reverse('categories:category', args=[self.c.slug])
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
@@ -68,24 +68,24 @@ class ListingsTest(TestCase):
         self.assertTrue(isinstance(self.l, Listing))
 
     def test_listing_list_view(self):
-        url = reverse('listings')
+        url = reverse('listings:listings')
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.l.title.encode(), resp.content)
 
     def test_listing_detail_view(self):
-        url = reverse('listing', args=[self.l.slug])
+        url = reverse('listings:listing', args=[self.l.slug])
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.l.title.encode(), resp.content)
 
     def test_create_listing_view(self):
-        url = reverse('create_listing')
+        url = reverse('listings:create_listing')
         resp = self.client.get(url)
         resp_post = self.client.post(url, data=self.post_data, follow=True)
-        expected_url = reverse('listings')
+        expected_url = reverse('listings:listings')
 
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'categories/create_listing.html')
@@ -95,11 +95,11 @@ class ListingsTest(TestCase):
                             target_status_code=200)
 
     def test_edit_listing_view(self):
-        url = reverse('edit_listing', args = [self.l.slug])
+        url = reverse('listings:edit_listing', args = [self.l.slug])
         resp = self.client.get(url)
         form = resp.context['form']
         data = form.initial
-        expected_url = reverse('listings')
+        expected_url = reverse('listings:listings')
 
         data['title'] = 'edited title'
 
@@ -116,10 +116,10 @@ class ListingsTest(TestCase):
 
     def test_delete_listing_view(self):
         slug = self.l.slug
-        url = reverse('delete_listing', args = [slug])
+        url = reverse('listings:delete_listing', args = [slug])
         resp = self.client.get(url)
         listing = resp.context['listing']
-        expected_url = reverse('listings')
+        expected_url = reverse('listings:listings')
 
         resp_post = self.client.post(url, follow=True)
 
@@ -134,7 +134,7 @@ class ListingsTest(TestCase):
         self.assertEqual(resp.status_code ,404)
 
     def test_search_view(self):
-        url = reverse('search')
+        url = reverse('listings:search')
         data = {'q':'Test Listing'}
         resp = self.client.get(url, data=data)
 
