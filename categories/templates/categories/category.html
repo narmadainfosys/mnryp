@@ -6,7 +6,7 @@
 
 {% for listing in listings.all %}
 
-<p><a href="{% url 'listing' slug=listing.slug %}">{{ listing.title }}</a></p>
+<p><a href="{% url 'listings:listing' slug=listing.slug %}">{{ listing.title }}</a></p>
 <p>{{ listing.slug }}</p>
 
 {% endfor %}

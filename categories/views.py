@@ -53,7 +53,7 @@ def create_listing(request):
         listing_form = ListingForm(request.POST)
         if listing_form.is_valid():
             listing_form.save()
-            return redirect('listings')
+            return redirect('listings:listings')
 
     else:
         listing_form = ListingForm()
@@ -72,7 +72,7 @@ def edit_listing(request, slug):
         edit_form = ListingForm(request.POST, instance=listing)
         if edit_form.is_valid():
             edit_form.save()
-            return redirect('listings')
+            return redirect('listings:listings')
     else:
         edit_form = ListingForm(instance=listing)
 
@@ -89,16 +89,12 @@ def delete_listing(request, slug):
 
     if request.method == "POST":
         listing.delete()
-        return redirect('listings')
+        return redirect('listings:listings')
 
     context = {
         'listing':listing,
     }
     return render(request, template, context)
-
-
-
-
 
 def search(request):
     template = 'categories/listings.html'
