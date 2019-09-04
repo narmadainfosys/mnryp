@@ -24,7 +24,6 @@ class Listing(models.Model):
     contact_person = models.CharField(max_length=50)
     business_address = models.CharField(max_length=50)
     email_address = models.EmailField(blank=True)
-    business_fax = models.CharField(blank=True, max_length=10)
     phone_number = models.CharField(max_length=10)
     phone_number_second = models.CharField(blank=True, max_length=10)
     zip_code = models.PositiveIntegerField(blank=True)
