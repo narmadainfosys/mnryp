@@ -40,9 +40,8 @@ class ListingsTest(TestCase):
             'contact_person': 'Test person',
             'business_address': 'Test business address',
             'email_address': 'test@gmail.com',
-            'phone_number': '+9779801234567',
-            'zip_code': '10400',
-            'country': 'NP'
+            'phone_number': '9801234567',
+            'zip_code': '10400'
             }
 
     def setUp(self):
@@ -53,9 +52,8 @@ class ListingsTest(TestCase):
                 full_description='Full desc',
                 contact_person='Test person',
                 business_address='Test business address',
-                phone_number='+9779812111122',
-                zip_code='10400',
-                country='NP',)
+                phone_number='9812111122',
+                zip_code='10400',)
     def test_listing_creation(self):
         self.assertEqual(self.l.category, self.c)
         self.assertEqual(self.l.title, 'Test listing')
@@ -63,9 +61,8 @@ class ListingsTest(TestCase):
         self.assertEqual(self.l.full_description, 'Full desc')
         self.assertEqual(self.l.contact_person, 'Test person')
         self.assertEqual(self.l.business_address, 'Test business address')
-        self.assertEqual(self.l.phone_number, '+9779812111122')
+        self.assertEqual(self.l.phone_number, '9812111122')
         self.assertEqual(self.l.zip_code, '10400')
-        self.assertEqual(self.l.country, 'NP')
         self.assertEqual(self.l.slug, 'test-listing')
         self.assertEqual(self.l.__str__(), self.l.title)
         self.assertTrue(isinstance(self.l, Listing))
@@ -128,9 +125,9 @@ class ListingsTest(TestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'categories/delete_listing.html')
-        
+
         resp = self.client.get(url, args = [slug], follow=True)
-        
+
         self.assertEqual(resp_post.status_code, 200)
         self.assertRedirects(resp_post, expected_url, status_code=302,
                             target_status_code=200)
